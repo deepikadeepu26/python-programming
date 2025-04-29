@@ -1,0 +1,28 @@
+class Solution(object):
+    def numDecodings(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if int(s[0]) == 0:
+             return 0 
+        n = len(s)
+        if n == 1:
+            return 1
+        prepre = pre = 1
+        for i in range(2, n+1):
+            prenum = int(s[i-2])
+            num = int(s[i-1])
+            val = prenum * 10 + num
+            c1 = 0
+            if val > 0 and val < 27 and prenum is not 0:
+                c1 = prepre
+            c2 = 0
+            if num > 0 and num < 10:
+                c2 = pre
+            now = c1 + c2
+            prepre = pre
+            pre = now
+        return pre
+
+        
