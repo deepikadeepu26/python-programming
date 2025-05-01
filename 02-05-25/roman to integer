@@ -1,0 +1,21 @@
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        summ = 0
+        valdict = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000}
+        val_before = valdict[s[0]]
+
+        for i in s:
+            val = valdict[i]
+            summ += val
+
+            if val_before < val:
+                summ -= 2 * val_before
+
+            val_before = valdict[i]
+        
+        return summ
+        
